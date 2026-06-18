@@ -1,6 +1,6 @@
 import z from 'zod'
 import { Agent } from '@mastra/core/agent'
-import { Agents } from '../consts/agent-ids'
+import { Agents, Models } from '../consts'
 
 const SYSTEM_PROMPT = `
 You are a technical research planner.
@@ -45,7 +45,7 @@ export const agent = new Agent({
 	id: Agents.PLANNER_AGENT,
 	name: 'Planner Agent',
 	instructions: SYSTEM_PROMPT,
-	model: 'google/palm-2-chat-bison',
+	model: Models.LITE_MODEL,
 })
 
 export default agent
