@@ -6,12 +6,12 @@ import { DuckDBStore } from "@mastra/duckdb";
 import { MastraCompositeStore } from '@mastra/core/storage';
 import { Observability, MastraStorageExporter, MastraPlatformExporter, SensitiveDataFilter } from '@mastra/observability';
 import { researchWorkflow } from './workflows/research-workflow';
-import { toolCallAppropriatenessScorer, completenessScorer, translationScorer } from './scorers/weather-scorer';
+import { researchQualityScorer } from './scorers/research-quality-scorer';
 
 export const mastra = new Mastra({
   workflows: { researchWorkflow },
   agents: { },
-  scorers: { toolCallAppropriatenessScorer, completenessScorer, translationScorer },
+  scorers: { researchQualityScorer },
   storage: new MastraCompositeStore({
     id: 'composite-storage',
     default: new LibSQLStore({

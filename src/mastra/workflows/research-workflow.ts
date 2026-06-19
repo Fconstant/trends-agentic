@@ -1,8 +1,8 @@
 import { createWorkflow } from '@mastra/core/workflows';
 import { z } from 'zod';
 import { plannerStep } from './steps/planner-step';
-import { githubResearchStep, communityResearchStep, productionResearchStep } from './steps/research-steps';
-import { consolidateStep } from './steps/consolidate-step';
+import { researchSteps } from './steps/research-steps';
+import { evaluateStep, evaluateStepInputSchema } from './steps/evaluate-step';
 
 const researchStateSchema = z.object({
   feedback: z.string().optional(),
@@ -18,8 +18,11 @@ const planAndResearchWorkflow = createWorkflow({
   }),
 })
   .then(plannerStep)
-  .parallel([githubResearchStep, communityResearchStep, productionResearchStep])
-  .then(consolidateStep)
+  .parallel(researchSteps)
+  .map(async ({ inputData }) => {
+    return evaluateStepInputSchema.parse(inputData);
+  })
+  .then(evaluateStep)
   .commit();
 
 export const researchWorkflow = createWorkflow({

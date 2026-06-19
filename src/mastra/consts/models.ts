@@ -1,4 +1,4 @@
-const LITE_MODEL = 'gemini-3.1-flash-lite';
+const LITE_MODEL = 'openrouter/free';
 const BETTER_MODEL = 'gemini-2.5-pro';
 const REASONING_MODEL = 'gemini-3.1-pro-preview';
 

@@ -1,0 +1,13 @@
+diff --git a/dist/tools/types.d.ts b/dist/tools/types.d.ts
+index 80bbc7e3173d4e3414971952e7902740a3a3254f..39b159cce5ac6c91cbf05935216f5c79dd16eeda 100644
+--- a/dist/tools/types.d.ts
++++ b/dist/tools/types.d.ts
+@@ -473,7 +473,7 @@ export interface ToolExecutionContext<TSuspend = unknown, TResume = unknown, TRe
+      * }
+      * ```
+      */
+-    observe: ToolObserve;
++    observe?: ToolObserve;
+ }
+ export interface ToolAction<TSchemaIn, TSchemaOut, TSuspend = unknown, TResume = unknown, TContext extends ToolExecutionContext<TSuspend, TResume, any> = ToolExecutionContext<TSuspend, TResume>, TId extends string = string, TRequestContext extends Record<string, any> | unknown = unknown> {
+     id: TId;

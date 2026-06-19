@@ -1,18 +1,11 @@
 import { createStep } from '@mastra/core/workflows';
-import { z } from 'zod';
 import * as PlannerAgent from '../../agents/planner-agent';
 
 export const plannerStep = createStep({
   id: 'plan-planner',
   description: 'Generates structured search queries for a topic',
-  inputSchema: z.object({ topic: z.string() }),
-  outputSchema: z.object({
-    queries: z.object({
-      github: z.array(z.string()),
-      community: z.array(z.string()),
-      production: z.array(z.string()),
-    }),
-  }),
+  inputSchema: PlannerAgent.INPUT_SCHEMA,
+  outputSchema: PlannerAgent.OUTPUT_SCHEMA,
   execute: async ({ inputData, state }) => {
     const feedback = (state as { feedback?: string }).feedback;
     const prompt = feedback
